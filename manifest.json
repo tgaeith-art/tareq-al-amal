@@ -1,8 +1,8 @@
 {
   "name": "طريق الأمل",
   "short_name": "طريق الأمل",
-  "start_url": "./index.html",
-  "scope": "./",
+  "start_url": "/tareq-al-amal/",
+  "scope": "/tareq-al-amal/",
   "display": "standalone",
   "background_color": "#1f1e2f",
   "theme_color": "#1f1e2f",
