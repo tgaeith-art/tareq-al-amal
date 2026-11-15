@@ -3,8 +3,8 @@
   "short_name": "طريق الأمل",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#121212",
-  "theme_color": "#121212",
+  "background_color": "#1f1e2f",
+  "theme_color": "#1f1e2f",
   "icons": [
     {
       "src": "icon-gold-192.png",
