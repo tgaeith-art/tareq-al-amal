@@ -1060,13 +1060,12 @@ function buildStatsPDF(a,b){const W=1684,H=1190,F='Cairo,Tahoma,sans-serif',t=b|
  for(let p=0;p<np-1;p++){[c,g]=mk();hdr(g,p+2,np);const sl=days.slice(p*per,(p+1)*per);for(let b=0;b<3;b++){const bx=W-40-b*555,rows=sl.slice(b*29,(b+1)*29);if(!rows.length)break;g.fillStyle='#ece8ff';g.fillRect(bx-535,130,535,40);g.fillStyle='#1b1840';g.font=`bold 24px ${F}`;g.fillText('التاريخ',bx-12,158);g.fillText('اليوم',bx-170,158);g.fillText('المهام',bx-300,158);g.fillText('المزاج',bx-480,158);rows.forEach((d,i)=>{const y=172+i*34;if(i%2){g.fillStyle='#f6f4ff';g.fillRect(bx-535,y,535,34)}const n=done(d);g.fillStyle='#1b1840';g.font=`22px ${F}`;g.fillText(d,bx-12,y+25);g.fillText(WD[new Date(d+'T12:00:00Z').getUTCDay()],bx-170,y+25);g.fillStyle='#8d74ff';g.fillRect(bx-390,y+8,Math.min(70,n*10),18);g.fillStyle='#1b1840';g.fillText(String(n),bx-300,y+25);const m=(S.mood||{})[d];if(m)g.fillText(MO[m-1][0],bx-480,y+27)})}pages.push(c)}
  const jp=pages.map(c=>{const b=atob(c.toDataURL('image/jpeg',.85).split(',')[1]),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u});return makePDF(jp,W,H)}
 async function exportPDF(){try{toast('⏳ جارٍ إنشاء التقرير...');await new Promise(r=>setTimeout(r,60));const bytes=buildStatsPDF(($('#pdfa')||{}).value,($('#pdfb')||{}).value),f=new File([bytes],'تقرير-طريق-الامال.pdf',{type:'application/pdf'});if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:'تقرير الإحصاءات'});return}catch(e){}}const u=URL.createObjectURL(f),a=document.createElement('a');a.href=u;a.download=f.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>{try{window.open(u,'_blank')}catch(e){}},300);toast('✅ تم إنشاء ملف PDF')}catch(e){toast('تعذّر إنشاء الملف: '+e.message)}}
-let dp;addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e});
-function ex(){$('#bk').value=JSON.stringify(S);$('#bk').select();try{navigator.clipboard.writeText($('#bk').value);toast('نُسخت النسخة الاحتياطية')}catch(e){toast('انسخ النص يدوياً')}}
-function im(){const v=$('#bk').value.trim();if(!v)return $('#fi').click();try{S=Object.assign(def(),JSON.parse(v));save();R();toast('تم الاستيراد')}catch(e){toast('ملف غير صالح')}}
-function rst(){const b=$('#rs');if(b.dataset.s){S=def();S.bhp=bmax(0);save();R();toast('تمت إعادة الضبط')}else{b.dataset.s=1;b.textContent='اضغط للتأكيد';setTimeout(()=>{b.dataset.s='';b.textContent='إعادة ضبط المصنع'},3000)}}
-try{autoNeg()}catch(e){}applyTh();if(location.hash=='#widget')tab='widget';if(location.hash=='#timer')tab='cosmos';if(location.hash=='#new')setTimeout(()=>addSheet(),700);try{migr();if(hr()>=21&&F2().sd!=today()){F2().sd=today();setTimeout(daySum,1800)}const ya=yearAgoHTML();if(ya&&F2().ya!=today()){F2().ya=today();setTimeout(()=>toast('📅 تذكير: قبل سنة في مثل هذا اليوم لديك إنجازات'),2500)}}catch(e){}settle();R();
-</script><script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
+} catch(e) { toast('خطأ في التصدير'); } }
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
 </script>
-</body></html>
+</body>
+</html>
