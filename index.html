@@ -1064,4 +1064,8 @@ function ex(){$('#bk').value=JSON.stringify(S);$('#bk').select();try{navigator.c
 function im(){const v=$('#bk').value.trim();if(!v)return $('#fi').click();try{S=Object.assign(def(),JSON.parse(v));save();R();toast('تم الاستيراد')}catch(e){toast('ملف غير صالح')}}
 function rst(){const b=$('#rs');if(b.dataset.s){S=def();S.bhp=bmax(0);save();R();toast('تمت إعادة الضبط')}else{b.dataset.s=1;b.textContent='اضغط للتأكيد';setTimeout(()=>{b.dataset.s='';b.textContent='إعادة ضبط المصنع'},3000)}}
 try{autoNeg()}catch(e){}applyTh();if(location.hash=='#widget')tab='widget';if(location.hash=='#timer')tab='cosmos';if(location.hash=='#new')setTimeout(()=>addSheet(),700);try{migr();if(hr()>=21&&F2().sd!=today()){F2().sd=today();setTimeout(daySum,1800)}const ya=yearAgoHTML();if(ya&&F2().ya!=today()){F2().ya=today();setTimeout(()=>toast('📅 تذكير: قبل سنة في مثل هذا اليوم لديك إنجازات'),2500)}}catch(e){}settle();R();
-</script></body></html>
+</script><script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+</script>
+</body></html>
